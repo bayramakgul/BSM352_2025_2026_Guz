@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmlakIlanApp.View.IlanPage"
+             Title="İlanlar">
+
+    <CollectionView
+        x:Name="lstIlanlar"
+        ItemsSource="{Binding Ilanlar}"
+        SelectionMode="Single"
+        SelectionChanged="lstIlanlar_SelectionChanged">
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+                <SwipeView>
+
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="📞" CommandParameter="{Binding ID}" Clicked="TelButtonClicked" />
+                            <MenuFlyoutItem Text="📧" CommandParameter="{Binding ID}" Clicked="EmailButtonClicked"/>
+                            <MenuFlyoutItem Text="📝" CommandParameter="{Binding ID}" Clicked="EditButtonClicked"/>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+
+
+                    <SwipeView.LeftItems>
+                        <SwipeItem
+                            Text="📞"
+                            BackgroundColor="Red"
+                            CommandParameter="{Binding ID}"
+                            Clicked="TelButtonClicked"/>
+                        <SwipeItem
+                            Text="📧"
+                            BackgroundColor="Red"
+                            CommandParameter="{Binding ID}"
+                            Clicked="EmailButtonClicked"/>
+
+                    </SwipeView.LeftItems>
+
+                    <SwipeView.RightItems>
+                        <SwipeItem
+                            Text="📝"
+                            BackgroundColor="Blue"
+                            CommandParameter="{Binding ID}"
+                            Clicked="EditButtonClicked"/>
+                    </SwipeView.RightItems>
+
+
+                    <Border>
+                        <Grid ColumnDefinitions="100,*,Auto" ColumnSpacing="10"
+                      RowDefinitions="Auto,Auto,Auto">
+
+                            <ActivityIndicator Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                           IsRunning="{Binding Source={x:Reference res}, Path=IsLoading}"/>
+
+                            <Image x:Name="res" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                        Source="{Binding Resim}"/>
+
+                            <Label Grid.Column="1" Grid.Row="0"
+                           Text="{Binding IlanBasligi}"/>
+
+                            <Label Grid.Column="1" Grid.Row="1" 
+                            Text="{Binding Fiyat, StringFormat='{0:C}'}"/>
+
+                            <Label Grid.Column="1" Grid.Row="2"
+                            Text="{Binding Konum}"/>
+
+                            <Button Grid.Column="2" Grid.Row="0" CommandParameter="{Binding ID}"
+                            Text="📞" Background="Transparent"
+                            Clicked="TelButtonClicked"/>
+
+                            <Button Grid.Column="2" Grid.Row="1" CommandParameter="{Binding ID}"
+                            Text="📧" Background="Transparent"
+                            Clicked="EmailButtonClicked"/>
+
+                            <Button Grid.Column="2" Grid.Row="2" CommandParameter="{Binding ID}"
+                            Text="📝" Background="Transparent"
+                            Clicked="EditButtonClicked"/>
+
+
+                        </Grid>
+                    </Border>
+
+                </SwipeView>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        
+    </CollectionView>
+    
+</ContentPage>

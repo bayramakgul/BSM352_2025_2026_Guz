@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppHafta3.MainPage"
+             Title="Kullanıcı Bilgileri">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="TextColor" Value="OrangeRed"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="TextColor" Value="Blue"/>
+
+        </Style>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="OkButton">
+            <Setter Property="Text" Value="✅ Tamam"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Background" Value="YellowGreen"/>
+            <Setter Property="TextColor" Value="DarkGreen"/>
+            <Setter Property="WidthRequest" Value="150"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+                                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="CancelButton">
+            <Setter Property="Text" Value="❌ İptal"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Background" Value="Pink"/>
+            <Setter Property="TextColor" Value="DarkRed"/>
+            <Setter Property="WidthRequest" Value="150"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <StackLayout Margin="10,5" Spacing="5">
+            <Label Text="Adı:"/>
+            <Entry Placeholder="Adınız..."/>
+
+            <Label Text="Soyadı:"/>
+            <Entry Placeholder="Soyadınız..." 
+               TextTransform="Uppercase"/>
+
+            <Label Text="Mail:"/>
+            <Entry Placeholder="E-Posta..."
+               TextTransform="Lowercase"
+               Keyboard="Email"/>
+
+            <Label Text="Şifre:"/>
+            <Entry Placeholder="Şifreniz..." 
+               IsPassword="True"
+               Keyboard="Password"/>
+
+
+            <Label Text="Telefon:"/>
+            <Entry Placeholder="Telefon No"
+               Keyboard="Telephone"/>
+
+            <Label Text="Adres:"/>
+            <Editor Placeholder="Adres"
+                HeightRequest="100"/>
+
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Cinsiyet:"/>
+                <RadioButton Content="Erkek"/>
+                <RadioButton Content="Kadın"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Doğum Tarihi:"/>
+                <DatePicker FontSize="22" 
+                        MinimumDate="1995.01.01"
+                        MaximumDate="2005.12.31"/>
+                <TimePicker FontSize="22"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label BindingContext="{x:Reference slBoy}"
+                   Text="{Binding Value, StringFormat='Boy: {0:F0}'}"/>
+                <Slider x:Name="slBoy" WidthRequest="200"
+                        Minimum="140" Maximum="210"/>
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+
+                <Label BindingContext="{x:Reference stepperk}" Text="{Binding Value, StringFormat='Kardeş Sayısı: {0}'}"/>
+                <Stepper x:Name="stepperk" Minimum="0" Maximum="20"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+            <CheckBox x:Name="chk_anladim"/>
+            <Label Text="Okudum, Anladım, Kabul ediyorum."/>
+                
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="End">
+                <Button Style="{StaticResource OkButton}"
+                        IsEnabled="{Binding Source={x:Reference chk_anladim}, Path=IsChecked}"/>
+                <Button Style="{StaticResource CancelButton}"/>
+
+            </HorizontalStackLayout>
+
+        </StackLayout>
+
+
+    </ScrollView>
+
+</ContentPage>

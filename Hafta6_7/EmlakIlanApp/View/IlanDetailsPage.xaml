@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmlakIlanApp.View.IlanDetailsPage"
+             Title="İlan Detay Sayfası">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="OrangeRed"/>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+
+        <VerticalStackLayout Margin="10" Spacing="5">
+
+            <Image Source="{Binding Source={x:Reference lstResimler}, Path=SelectedItem}"
+                   WidthRequest="320"
+                   Margin="10"/>
+
+            <CollectionView x:Name="lstResimler" Margin="10"
+                            ItemsSource="{Binding ResimLinkleri}"
+                            SelectionMode="Single" SelectedItem="{Binding Resim}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Image HeightRequest="64" 
+                           WidthRequest="96"
+                           Source="{Binding}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Ilan Başlığı"/>
+            <Entry Text="{Binding IlanBasligi}"/>
+
+            <Label Text="Açıklama"/>
+            <Entry Text="{Binding Aciklama}"/>
+
+            <Label Text="Fiyat"/>
+            <Entry Text="{Binding Fiyat, StringFormat='{0:C}'}"/>
+
+            <Label Text="Metrekare"/>
+            <Entry Text="{Binding MetreKare}"/>
+
+            <Label Text="Konum"/>
+            <Entry Text="{Binding Konum}"/>
+            <Picker x:Name="lstKonumlar" SelectedItem="{Binding Konum}"/>
+
+            <Label Text="Imar Oranı"/>
+            <Entry Text="{Binding ImarOrani}"/>
+
+            <Label Text="Emlak Türü"/>
+            <Entry Text="{Binding EmlakTuru}"/>
+
+            <Label Text="Email"/>
+            <Entry Text="{Binding Email}"/>
+
+            <Label Text="Telefon"/>
+            <Entry Text="{Binding Telefon}"/>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="CarListApp.View.CarListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:CarListApp.View"
+    mc:Ignorable="d"
+    Loaded="ContentPage_Loaded"
+    >
+
+    <!-- Kaynaklar -->
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- Araç çubuğu -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ekle" IconImageSource="car_add.png"     Clicked="btnArabaEkle_Clicked" />
+        <ToolbarItem Text="Düzenle" IconImageSource="car_edit.png" Clicked="btnArabaDuzenle_Clicked"/>
+        <ToolbarItem Text="Sil" IconImageSource="car_delete.png"   Clicked="btnArabaSil_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+
+    <!-- Sayfa içeriği -->
+    <ContentPage.Content>
+
+        <CollectionView x:Name="lstArabalar" SelectionMode="Single" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeThickness="1" Background="Transparent">
+
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="3"
+                          ColumnDefinitions="Auto,Auto"   ColumnSpacing="10">
+
+                            <Image Grid.Row="0" Grid.Column="0"
+                               Grid.RowSpan="6" WidthRequest="150"
+                               Source="{Binding Resim}" />
+
+                            <Label Grid.Row="0" Grid.Column="1"
+                               Text="{Binding Marka}" />
+
+                            <Label Grid.Row="1" Grid.Column="1"
+                               Text="{Binding Model}" />
+
+                            <Label Grid.Row="2" Grid.Column="1"
+                                 Text="{Binding Yil}" />
+
+                            <Label Grid.Row="3" Grid.Column="1"
+                               Text="{Binding Renk}" />
+
+                            <Label Grid.Row="4" Grid.Column="1"
+                               Text="{Binding Fiyat, StringFormat='{0:C}'}" />
+
+                            <Label Grid.Row="5" Grid.Column="1"
+                               Text="{Binding ID}" FontSize="Micro" TextColor="Orangered" />
+
+                        </Grid>
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+
+
+
+</ContentPage>

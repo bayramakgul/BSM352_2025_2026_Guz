@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiApp_PagesLayouts.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:MauiApp_PagesLayouts"
+    mc:Ignorable="d">
+
+    <StackLayout Margin="10"  >
+        <Image Source="dotnet_bot.png"
+               HeightRequest="100"/>
+
+        <VerticalStackLayout x:Name="loginStack"
+                             Spacing="10"
+                             IsVisible="True">
+
+            <Label Text="Giriş Yap" FontSize="32" HorizontalOptions="Center"/>
+
+            <Label Text="E-Mail" 
+                   FontAttributes="Bold"/>
+
+            <HorizontalStackLayout>
+            <Image Source="email.png" />
+            <Entry Placeholder="E-Mail"
+                   Keyboard="Email" WidthRequest="300" />
+            </HorizontalStackLayout>
+            
+            <Label Text="Password"/>
+            <HorizontalStackLayout>
+            <Image Source="password.png" />
+            <Entry Placeholder="Password"
+                   FontAttributes="Bold"
+                   IsPassword="True"
+                   Keyboard="Password" WidthRequest="300"/>
+            </HorizontalStackLayout>
+
+            <Button x:Name="btnLogin" Text="Giriş Yap" Clicked="btnLogin_Clicked"  />
+
+            <Button 
+                x:Name="btnGotoRegistration"
+                Text="Hesabınız yoksa yeni bir hesap oluşturun!"
+                Background="Transparent"
+                TextColor="Blue"
+                Clicked="btnGotoRegistration_Clicked"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout x:Name="registerStack" 
+                             BackgroundColor="AliceBlue"
+                             Spacing="10"
+                             IsVisible="False">
+            <Label Text="Hesap Oluştur" FontSize="32" HorizontalOptions="Center"/>
+
+            <HorizontalStackLayout>
+            <Image Source="user.png" />
+            <Entry Placeholder="Adı Soyadı"
+                   Keyboard="Text" WidthRequest="300"/>
+            </HorizontalStackLayout>
+            <Label Text="Adı Soyadı"/>
+
+            <HorizontalStackLayout>
+                <Image Source="email.png" />
+                <Entry Placeholder="E-Mail"
+                   Keyboard="Email" WidthRequest="300" />
+            </HorizontalStackLayout>
+
+            <Label Text="Password"/>
+            <HorizontalStackLayout>
+                <Image Source="password.png" />
+                <Entry Placeholder="Password"
+                   FontAttributes="Bold"
+                   IsPassword="True"
+                   Keyboard="Password" WidthRequest="300"/>
+            </HorizontalStackLayout>
+
+            <Button Text="Kaydol"/>
+
+            <Button 
+                x:Name="btnGotoLogin"
+                Text="Zaten bir hesabınız varsa oturum açın!"
+                Background="Transparent"
+                TextColor="Blue"
+                Clicked="btnGotoLogin_Clicked"/>
+        </VerticalStackLayout>
+    </StackLayout>
+    
+</ContentPage>

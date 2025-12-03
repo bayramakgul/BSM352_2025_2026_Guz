@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiRehberApp.MainPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ekle" Clicked="EkleToolbarItem_Clicked"/>
+        <ToolbarItem Text="Düzenle" Clicked="DuzenleToolbarItem_Clicked"/>
+        <ToolbarItem Text="Sil" Clicked="SilToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView Margin="10">
+        <VerticalStackLayout>
+        <SearchBar x:Name="FilterText"  SearchButtonPressed="Filtrele" TextChanged="Filtrele" />
+            
+        <CollectionView ItemsSource="{Binding Kisiler}" Margin="10"
+                        SelectionChanged="CollectionView_SelectionChanged"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10" Padding="10">
+                        <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="10"
+                              ColumnDefinitions="Auto,*" ColumnSpacing="10">
+
+                            <VerticalStackLayout Grid.RowSpan="3" >
+                            <Image WidthRequest="80" HeightRequest="80" 
+                                   Aspect="AspectFill" 
+                                   Source="{Binding Resim}"/>
+                                
+                                <Label Text="{Binding Id}"
+                                       FontSize="8" 
+                                       HorizontalOptions="Center" 
+                                       TextColor="Gray"/>
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="1" Grid.Row="0" Text="{Binding AdSoyad}" FontSize="20" FontAttributes="Bold" />
+                            <Label Grid.Column="1" Grid.Row="1" Text="{Binding Telefon}" FontSize="16" />
+                            <Label Grid.Column="1" Grid.Row="2" Text="{Binding Email}" FontSize="16"  />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

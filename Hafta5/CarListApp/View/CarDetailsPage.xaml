@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="CarListApp.View.CarDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:CarListApp.View"
+    mc:Ignorable="d">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content >
+        <Grid RowDefinitions="Auto, Auto, Auto,Auto,Auto,Auto, Auto, Auto"
+              ColumnDefinitions="Auto,*" ColumnSpacing="5"
+              Margin="10">
+
+            <Label Text="ID:" Grid.Row="0" Grid.Column="0" />
+            <Label Text="{Binding ID}" Grid.Row="0" Grid.Column="1"
+                   TextColor="OrangeRed" />
+
+
+            <Label Text="Marka:" Grid.Row="1" Grid.Column="0" />
+            <Entry Text="{Binding Marka}" Grid.Row="1" Grid.Column="1" />
+
+            <Label Text="Model:" Grid.Row="2" Grid.Column="0" />
+            <Entry Text="{Binding Model}" Grid.Row="2" Grid.Column="1" />
+
+            <Label Text="Yıl:" Grid.Row="3" Grid.Column="0" />
+            <Entry Text="{Binding Yil}" Grid.Row="3" Grid.Column="1" />
+
+            <Label Text="Renk:" Grid.Row="4" Grid.Column="0" />
+            <Entry Text="{Binding Renk}" Grid.Row="4" Grid.Column="1" />
+
+            <Label Text="Fiyat:" Grid.Row="5" Grid.Column="0" />
+            <Entry Text="{Binding Fiyat}" Grid.Row="5" Grid.Column="1"
+                   Keyboard="Numeric"/>
+
+
+            <Border Stroke="Gray" StrokeThickness="1"
+                    Grid.Row="6" Grid.ColumnSpan="2" Margin="5">
+                <StackLayout >
+                    <Button Text="Resim Ekle" Background="Transparent" TextColor="Blue"/>
+                    <Image Source="{Binding Resim}" HeightRequest="200"/>
+                </StackLayout>
+            </Border>
+
+            <HorizontalStackLayout Grid.Row="7" Grid.ColumnSpan="2"
+                Spacing="10" HorizontalOptions="End" Margin="10">
+                <Button WidthRequest="100" Text="Tamam" Clicked="OnOkButtonClicked"/>
+                <Button WidthRequest="100" Text="İptal" Clicked="OnCancelButtonClicked"/>
+            </HorizontalStackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+    
+</ContentPage>
