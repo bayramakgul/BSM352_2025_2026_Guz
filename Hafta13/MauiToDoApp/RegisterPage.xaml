@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiToDoApp.RegisterPage"
+             Title="RegisterPage">
+
+    <Border Margin="10">
+
+        <VerticalStackLayout Spacing="10" Margin="10">
+            <Label Text="Kullanıcı Bilgilerini Gir"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+                   FontSize="15"/>
+
+            <Entry 
+            x:Name="UsernameEntry"
+            Placeholder="Kullanıcı Adı" />
+
+            <Entry 
+            x:Name="EmailEntry"
+            Placeholder="Email" />
+
+            <Entry
+            x:Name="PasswordEntry"
+            Placeholder="Parola"
+            IsPassword="True" />
+
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="Center">
+                <Button 
+                Text="Kayıt Ol" WidthRequest="100"
+                Clicked="OnRegisterButtonClicked" />
+                <Button
+                Text="İptal" WidthRequest="100"
+                Clicked="CancelButtonClicked" />
+            </HorizontalStackLayout>
+
+            <Button 
+            Text="Zaten bir hesabın var mı? Giriş Yap"
+            BackgroundColor="Transparent"
+            TextColor="Blue"
+            Clicked="OnGotoLoginPageButtonClicked" />
+
+        </VerticalStackLayout>
+    </Border>
+</ContentPage>
