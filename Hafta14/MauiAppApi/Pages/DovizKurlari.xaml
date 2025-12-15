@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppApi.Pages.DovizKurlari"
+             Title="DovizKurlari">
+    <VerticalStackLayout Margin="20">
+        <Label 
+            Margin="20"
+            FontSize="28"
+            FontAttributes="Bold"
+            x:Name="lblDate"
+            Text="Döviz Kurları Sayfası Tarih:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <ListView x:Name="KurlarList">
+            <ListView.Header>
+                <Grid ColumnDefinitions="2*,*,*,*">
+                    <Label Grid.Column="0" FontAttributes="Bold" Text="İsim"/>
+                    <Label Grid.Column="1" FontAttributes="Bold" Text="Alış Fiyatı"/>
+                    <Label Grid.Column="2" FontAttributes="Bold" Text="Satış Fiyatı"/>
+                    <Label Grid.Column="3" FontAttributes="Bold" Text="Çapraz Kur"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnDefinitions="2*,*,*,*">
+                            <Label Grid.Column="0" Text="{Binding Isim}"/>
+                            <Label Grid.Column="1" Text="{Binding ForexBuying}"/>
+                            <Label Grid.Column="2" Text="{Binding ForexSelling}"/>
+                            <Label Grid.Column="3" Text="{Binding CrossRateUSD}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </VerticalStackLayout>
+</ContentPage>

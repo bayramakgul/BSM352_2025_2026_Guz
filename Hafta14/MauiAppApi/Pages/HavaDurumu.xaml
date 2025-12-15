@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppApi.Pages.HavaDurumu"
+             Title="HavaDurumu"
+             Loaded="ContentPage_Loaded"
+             Unloaded="ContentPage_Unloaded">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="➕" Clicked="AddSehir_Clicked" /> 
+    </ContentPage.ToolbarItems>
+    
+    <CollectionView x:Name="lstSehirler" Margin="10">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border Margin="10">
+                    <VerticalStackLayout>
+                        <Label  Text="{Binding SehirAdi}" 
+                                Grid.Column="0" 
+                                HorizontalOptions="Center"
+                                FontAttributes="Bold"
+                                />
+
+                        <Grid RowDefinitions="Auto,Auto" Margin="10"
+                      ColumnDefinitions="*,2.5*,Auto,Auto"
+                      ColumnSpacing="10">
+
+                            <Button Text="🔄" Grid.Column="2" CommandParameter="{Binding}" Clicked="Update_Clicked" Background="Transparent"/>
+                            <Button Text="❌" Grid.Column="3" CommandParameter="{Binding}" Clicked="Remove_Clicked" Background="Transparent" />
+                            <Label Text="Anlık Durum" VerticalTextAlignment="Center"
+                                   Grid.Row="0" Grid.Column="0" 
+                                   HorizontalOptions="Center"/>
+                            <Label Text="5 Günlük Tahmin" VerticalTextAlignment="Center"
+                                   Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"/> "
+                           
+                            <WebView Grid.Row="1" 
+                             Source="{Binding BugunUrl}"
+                             HeightRequest="120"/>
+
+                            <WebView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                             Source="{Binding BesGunUrl}"
+                             HeightRequest="120"/>
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
