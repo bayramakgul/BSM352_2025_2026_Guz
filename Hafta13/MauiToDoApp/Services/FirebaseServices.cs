@@ -1,6 +1,9 @@
 ﻿
 using Firebase.Auth;
 using Firebase.Auth.Providers;
+using Firebase.Database;
+using Firebase.Database.Query;
+
 
 using MauiToDoApp.Model;
 
@@ -16,6 +19,7 @@ namespace MauiToDoApp.Services
         static string apiKey = "AIzaSyDBaHKTEUZ9BxA1k6FrwtVUfkDYUSR2I1s";
         static string authDomain = "rehber2025-cdaf0.firebaseapp.com";
         static string storeBucked = $"{projectId}.appspot.com";
+
 
         static FirebaseAuthConfig config = new FirebaseAuthConfig()
         {
@@ -58,9 +62,24 @@ namespace MauiToDoApp.Services
             return Task.FromResult(false);
         }
 
-        internal static void AddNewTodo(ToDoItem item)
+        const string ConnectionString = "https://rehber2025-cdaf0-default-rtdb.firebaseio.com/";
+        static FirebaseClient firebaseClient = new FirebaseClient(ConnectionString);
+
+        internal static bool AddNewTodo(ToDoItem item, ref string message)
         {
-            throw new NotImplementedException();
+            message = "";
+            // TODO: Implement Firebase Firestore integration to add a new ToDo item
+            if (item == null)
+            {
+                message = "ToDo item cannot be null.";
+                return false;
+            }
+            else
+            {
+                firebaseClient.Child($"todos/{item.Id}").PutAsync(item).Wait();
+                return true;
+            }
+
         }
     }
 }

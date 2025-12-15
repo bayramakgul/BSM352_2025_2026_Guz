@@ -16,6 +16,7 @@ public partial class AddToDoPage : ContentPage
 
     private void AddNewTodo(object sender, EventArgs e)
     {
-		FirebaseServices.AddNewTodo(Todo);
+		string message = string.Empty;
+        FirebaseServices.AddNewTodo(Todo, ref message);
     }
 }
